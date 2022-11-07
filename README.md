@@ -1,1 +1,2 @@
-# makgoon.github.io
+# CelineJoo.github.io
+개발 blog
