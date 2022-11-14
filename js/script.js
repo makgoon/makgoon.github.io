@@ -1,6 +1,7 @@
 
 $(function(){
-    $(".slideArea").slick({
+
+    $(".slideContent").slick({
         slide: 'div',
         infinite : true, 	//무한 반복 옵션	 
         speed : 300,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
@@ -13,7 +14,8 @@ $(function(){
         slidesToShow : 3,
         centerPadding:'0',
 
-    })
+    });
+
 
     $('.money').on('click',function(){
         $('.money').removeClass('active');
@@ -52,15 +54,7 @@ $(function(){
 
     });
 
-
- 
-
-
-  
-    
-
-    
-    
+    $('.photo').click();
 })
 
 $(document).ready(function(){
