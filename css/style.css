@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 body{    
-    background-color:#121212;
+    background-color:#F5F5F5;
     font-size: 3.83vw;
     font-weight: 400;
     overflow-x:hidden;
@@ -9,12 +9,12 @@ body{
     
 }  
 .wrap{
-    background-color: #121212;
+    background-color: #F5F5F5;
 }
 .content {
     margin: 0 auto;
     padding-top:7.5vh;
-    background-color: #121212;
+    background-color: #F5F5F5;
 }
 
 .content .titleArea{
@@ -37,7 +37,7 @@ body{
 
 }
 .content .decs{
-    color:#fff;
+    color:#4D4D4D;
     font-weight: 500;
 }
 
@@ -55,6 +55,13 @@ body{
     padding: 0 10px;
     box-sizing: border-box;
     /* width: 56.7vw; */
+}
+
+.mainPic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: -38vw; */
 }
 
 .slideArea .slideContent {
@@ -170,13 +177,14 @@ body{
 
 .slideDecs {
     margin-bottom: 9.09vw;
+    margin-top: 12.09vw;
     font-size: 3.35vw;
-    color:#fff;
+    color:#4D4D4D;
     text-align: center;
 }
 
 .slideDecs img{
-    display: block;
+    /*display: block;*/
     margin: 0 auto;
     width: 3.59vw;
     height: 3.35vw;

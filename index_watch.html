@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="js/lib/slick/slick-theme.css">
+    <link rel="stylesheet" href="js/lib/slick/slick.css">
+    <link rel="stylesheet" href="js/lib/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/lib/jquery-3.6.1.min.js"></script>
+    <script src="js/lib/slick/slick.min.js"></script>
+    <script src="js/lib/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+    <script src="json/watch.json" type="text/javascript"></script>
+    <script>
+        let testData = JSON.parse(JSON.stringify(WatchData));
+
+        function setContent() {
+            const element = document.getElementById('contentID');
+            console.log(testData[0][1]['content']);
+            element.innerHTML = '<li>' + testData[0][1]['content'] +'</li>'
+        }
+        document.addEventListener("DOMContentLoaded", function(){
+            setContent();
+
+        });
+    </script>
+    <title>상세페이지</title>
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <!-- container -->
+        <div id="container" class="container ">
+            <!-- //content -->
+            <div id="content" class="content detailContent">
+                <div class="imgSlide">
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                </div>
+                <div class="contentArea">
+                    <div class="nameArea">
+                        <div>
+                            <div class="nameInfo">
+                                <p class="name">인천의 첫 철도, 경인철도</p>                               
+                            </div>
+                        </div>   
+                        <div class="shareIncon">
+                            <img src="images/icon/icShare.svg" alt="share" style="display: none">
+                        </div>
+                    </div>
+                    <div class="marketInfo">
+                        <p class="lable">경인선</p>
+                        <ul class="infoList">
+                            <li id = 'contentID'>
+                                dd
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="marketInfo map">
+                        <p class="lable">위치 안내</p>
+                        <img src="images/img/imgMap.svg" alt="map" class="mapImg">
+                    </div>
+                </div>
+                <div class="buttonArea">
+                    
+                    <a href="index.html"><button class="btnHome">홈</button></a>
+                    <a href="index_2.html"><button class="btnRetry">다시찾기</button></a>
+                    <button class="btnActive">길찾기</button>
+                </div>
+            </div>
+            <!-- //content -->
+        </div> 
+        <!-- //container -->
+    </div>
+</body>
+</html>
