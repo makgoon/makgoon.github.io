@@ -16,14 +16,37 @@
     <script src="json/watch.json" type="text/javascript"></script>
     <script>
         let testData = JSON.parse(JSON.stringify(WatchData));
+        var maxNM = 3;
+        var minNM = 1;
+        var mainNM = '';
+        var subNM = '';
+        var content = '';
+        const randomNM = Math.floor(Math.random()*(maxNM - minNM) + minNM);
 
-        function setContent() {
-            const element = document.getElementById('contentID');
-            console.log(testData[0][1]['content']);
-            element.innerHTML = '<li>' + testData[0][1]['content'] +'</li>'
+        function setVar(){
+            content = testData[0][randomNM]['content']
+            mainNM = testData[0][randomNM]['watchName'] 
+            subNM = testData[0][randomNM]['watSubName'] 
         }
+        function setContent() {
+            const elementCont = document.getElementById('contentID');
+            elementCont.innerHTML = '<li>' + content +'</li>'
+        }
+        function setMainNM() {
+            const elementMain = document.getElementById('mainNM');
+            elementMain.innerHTML = '<p class="name">' + mainNM +'</p>'
+        }
+        function setSubNM() {
+            const elementSub = document.getElementById('subNM');
+            elementSub.innerHTML = '<p class="lable">' + subNM +'</p>'
+        }
+
+
         document.addEventListener("DOMContentLoaded", function(){
+            setVar();
             setContent();
+            setMainNM();
+            setSubNM();
 
         });
     </script>
@@ -50,7 +73,7 @@
                     <div class="nameArea">
                         <div>
                             <div class="nameInfo">
-                                <p class="name">인천의 첫 철도, 경인철도</p>                               
+                                <p class="name" id="mainNM">제목</p>                               
                             </div>
                         </div>   
                         <div class="shareIncon">
@@ -58,10 +81,10 @@
                         </div>
                     </div>
                     <div class="marketInfo">
-                        <p class="lable">경인선</p>
+                        <p class="lable" id = "subNM">소제목</p>
                         <ul class="infoList">
                             <li id = 'contentID'>
-                                dd
+                                내용
 
                             </li>
                         </ul>
