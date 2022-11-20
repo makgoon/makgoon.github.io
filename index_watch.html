@@ -21,12 +21,13 @@
         var mainNM = '';
         var subNM = '';
         var content = '';
-        const randomNM = Math.floor(Math.random()*(maxNM - minNM) + minNM);
+        const randomNM = Math.floor(Math.random()*(maxNM + 1 - minNM) + minNM);
 
         function setVar(){
             content = testData[0][randomNM]['content']
             mainNM = testData[0][randomNM]['watchName'] 
             subNM = testData[0][randomNM]['watSubName'] 
+            picNM = testData[0][randomNM]['picNM']
         }
         function setContent() {
             const elementCont = document.getElementById('contentID');
@@ -40,13 +41,22 @@
             const elementSub = document.getElementById('subNM');
             elementSub.innerHTML = '<p class="lable">' + subNM +'</p>'
         }
-
+        function setPic(){
+            const elementPic = document.getElementById('getPic');
+            var picSourceTag = ''
+            for(var i = 1; i < picNM+1; i++){
+                picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.png" alt="상세"></div>'
+            }
+            elementPic.innerHTML = picSourceTag;
+            console.log(picSourceTag);
+        }
 
         document.addEventListener("DOMContentLoaded", function(){
             setVar();
             setContent();
             setMainNM();
             setSubNM();
+            setPic();
 
         });
     </script>
@@ -58,22 +68,17 @@
         <div id="container" class="container ">
             <!-- //content -->
             <div id="content" class="content detailContent">
-                <div class="imgSlide">
-                    <div class="img">
-                        <img src="images/img/detailImg.png" alt="상세">
+                <div class="imgSlide" id="getPic">
+                    <div class="img" >
+                        
                     </div>
-                    <div class="img">
-                        <img src="images/img/detailImg.png" alt="상세">
-                    </div>
-                    <div class="img">
-                        <img src="images/img/detailImg.png" alt="상세">
-                    </div>
+
                 </div>
                 <div class="contentArea">
                     <div class="nameArea">
                         <div>
-                            <div class="nameInfo">
-                                <p class="name" id="mainNM">제목</p>                               
+                            <div class="nameInfo" id="mainNM">
+                                <!--<p class="name" id="mainNM">제목</p> -->
                             </div>
                         </div>   
                         <div class="shareIncon">
@@ -81,7 +86,7 @@
                         </div>
                     </div>
                     <div class="marketInfo">
-                        <p class="lable" id = "subNM">소제목</p>
+                       <p class="lable" id = "subNM">소제목</p>
                         <ul class="infoList">
                             <li id = 'contentID'>
                                 내용
