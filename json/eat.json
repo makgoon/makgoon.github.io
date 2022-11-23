@@ -1,0 +1,12 @@
+EatData = [{
+    "1": {"ID" : "11597189", "stores": "내고향강원도", "X": "126.601054867908", "Y": "37.451881973876", "road_address": "인천 중구 연안부두로75번길 34", "place_url": "http://place.map.kakao.com/11597189", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-883-4547"},
+"2": {"ID" : "9395598", "stores": "인천항구회집", "X": "126.601870367148", "Y": "37.4515459449666", "road_address": "인천 중구 연안부두로75번길 34", "place_url": "http://place.map.kakao.com/9395598", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-885-0572"},
+"3": {"ID" : "9506319", "stores": "충청도7호", "X": "126.601603453645", "Y": "37.4520090645061", "road_address": "인천 중구 연안부두로75번길 27-1", "place_url": "http://place.map.kakao.com/9506319", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-885-8048"},
+"4": {"ID" : "1489659003", "stores": "호남회센타 6호이모네", "X": "126.600640420912", "Y": "37.4520337454369", "road_address": "인천 중구 연안부두로75번길 22", "place_url": "http://place.map.kakao.com/1489659003", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-887-4140"},
+"5": {"ID" : "14750396", "stores": "전라도똑소리 상다리가뿌러져", "X": "126.600948616281", "Y": "37.4523104948261", "road_address": "인천 중구 연안부두로75번길 27-2", "place_url": "http://place.map.kakao.com/14750396", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-889-9997"},
+"6": {"ID" : "13015800", "stores": "원조멍청도", "X": "126.600695347657", "Y": "37.452331263564", "road_address": "인천 중구 연안부두로75번길 21", "place_url": "http://place.map.kakao.com/13015800", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-885-8626"},
+"7": {"ID" : "14867184", "stores": "전라도 고흥15호", "X": "126.601008691327", "Y": "37.4522773603735", "road_address": "인천 중구 연안부두로75번길 27-2", "place_url": "http://place.map.kakao.com/14867184", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-891-7969"},
+"8": {"ID" : "681384478", "stores": "광희네횟집", "X": "126.60219945162", "Y": "37.4517200466032", "road_address": "인천 중구 연안부두로75번길 35", "place_url": "http://place.map.kakao.com/681384478", "CategoryGroup": "음식점", "Categorynm": "음식점 > 한식 > 해물,생선 > 회", "phone": "032-889-5250"}
+
+    
+}]

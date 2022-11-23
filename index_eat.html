@@ -13,6 +13,95 @@
     <script src="js/lib/slick/slick.min.js"></script>
     <script src="js/lib/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="js/script.js"></script>
+    <script src="json/eat.json" type="text/javascript"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b5469639799cba893ccb87b6e3dd9103"></script>
+    <script>
+        let testData = JSON.parse(JSON.stringify(EatData));
+        var maxNM = 8;
+        var minNM = 1;
+        var stores, road_address, place_url, CategoryGroup, Categorynm, phone, Latitude, longitude, picNM = '';
+        const randomNM = Math.floor(Math.random()*maxNM + minNM);
+
+        function setVar(){
+            stores = testData[0][randomNM]['stores']
+            CategoryGroup = testData[0][randomNM]['CategoryGroup']
+            Categorynm = testData[0][randomNM]['Categorynm']
+            place_url = testData[0][randomNM]['place_url']
+            road_address = testData[0][randomNM]['road_address']
+            phone = testData[0][randomNM]['phone']
+            Latitude = testData[0][randomNM]['Y']
+            longitude = testData[0][randomNM]['X']
+            //picNM = testData[0][randomNM]['picNM']
+
+        }
+
+        function setElements(){
+            const elementNamePlace = document.getElementById('nameplace');
+            const elementeatLink = document.getElementById('URLInfo');
+            const elementeatLoc = document.getElementById('eatAddr');
+            const elementeatPhone = document.getElementById('eatPhone');
+            const elementdetailInfo = document.getElementById('detailinfo');
+                        
+            elementNamePlace.innerHTML = '<p class="name">' + stores +'</p>  <p class="detailName">'+CategoryGroup+'</p>';
+            elementdetailInfo.innerHTML = '<p>'+Categorynm+'</p>'
+            elementeatLink.innerHTML = '<li class="homepage">'+ place_url+'</li>'
+            elementeatLoc.innerHTML = '<li class="address">'+road_address+'</li>'
+            elementeatPhone.innerHTML = '<span>'+phone+'</span>'
+
+        }
+/*
+        function setPic(){
+            const elementPic = document.getElementById('getPic');
+            var picSourceTag = ''
+            for(var i = 1; i < picNM+1; i++){
+                if(watchVersion === '1'){
+                    picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.jpg" alt="상세"></div>'
+                }else{
+                    picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.png" alt="상세"></div>'
+                }
+                
+            }
+            elementPic.innerHTML = picSourceTag;
+        }
+        */
+        document.addEventListener("DOMContentLoaded", function(){
+            setVar();
+            setElements()
+            //setPic();
+
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(Latitude, longitude), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            // 마커가 표시될 위치입니다 
+            var markerPosition  = new kakao.maps.LatLng(Latitude, longitude); 
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+
+            var iwContent = '<div style="padding:5px;">'+ stores +'<br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                iwPosition = new kakao.maps.LatLng(Latitude, longitude); //인포윈도우 표시 위치입니다
+
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                position : iwPosition, 
+                content : iwContent 
+            });
+            
+            // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+            infowindow.open(map, marker);
+        });
+    </script>
     <title>상세페이지</title>
 </head>
 <body>
@@ -35,11 +124,13 @@
                 <div class="contentArea">
                     <div class="nameArea">
                         <div>
-                            <div class="nameInfo">
+                            <div class="nameInfo" id="nameplace">
                                 <p class="name">미림극장</p>
                                 <p class="detailName">고전영화</p>
                             </div>
-                            <p>해산물전문점</p>
+                            <div id="detailinfo">
+                                <p>해산물전문점</p>
+                            </div>
                         </div>   
                         <div class="shareIncon">
                             <img src="images/icon/icShare.svg" alt="share">
@@ -48,21 +139,22 @@
                     <div class="marketInfo">
                         <p class="lable">가게정보</p>
                         <ul class="infoList">
-                            <li class="address">서울특별시 송파구 송파대로 133(송파동) 1층</li>
+                            <div id="eatAddr">
+                                <li class="address">서울특별시 송파구 송파대로 133(송파동) 1층</li>
+                            </div>
+                            
                             <li class="time"><span class="hour">10:00 ~ 22:00</span>매주 일요일 휴무<span class="close"> 영업종료</span></li>
-                            <li class="homepage">
-                                otaru-poseidon.com
-                            </li>
-                            <li class="phone">
+                            <div id="URLInfo">
+                                <li class="homepage">otaru-poseidon.com</li>
+                            </div>
+                            
+                            <li class="phone" id="eatPhone">
                                 <span>010-1234-1234</span>
-                                <div class="copyArea">
-                                    <img src="images/icon/icCopy.svg" alt="copy"><span class="copyText">복사</span>
-                                </div>
                             </li>
                         </ul>
                     </div>
                     <div class="marketInfo marketInfo_v2">
-                        <p class="lable">매뉴정보</p>
+                        <p class="lable">메뉴정보</p>
                         <div>
                             <div class="menuList "> 
                                 <a href="#">DD</a>
@@ -91,41 +183,11 @@
                                 <p class="price">26,000원</p>
                             </div>
                         </div>
-                        <button class="btnMore">더보기+</button>
                     </div>
-                    <div class="marketInfo marketInfo_v3">
-                        <p class="lable">매장사진</p>
-                        <ul>
-                            <li class="photo">
-                                <div>
-                                    <img src="images/img/market_01.png" alt="">
-                                    <p class="hash">매뉴판</p>
-                                </div>
-                            </li>
-                            <li class="photo">
-                                <div>
-                                    <img src="images/img/market_02.png" alt="">
-                                    <p class="hash">추천매뉴</p>
-                                </div>
-                            </li>
-                            <li class="photo">
-                                <div>
-                                    <img src="images/img/market_03_1.png" alt="">
-                                    <p class="hash">가게외부</p>
-                                </div>
-                            </li>
-                            <li class="photo">
-                                <div>
-                                    <img src="images/img/market_04.png" alt="">
-                                    <p class="hash">가게내부</p>
-                                </div>
-                            </li>
-                        </ul>
-                     
-                    </div>
+                    
                     <div class="marketInfo map">
                         <p class="lable">위치 안내</p>
-                        <img src="images/img/imgMap.svg" alt="map" class="mapImg">
+                        <div class="box" id="map"  style="width:360px;height:400px;"></div>
                     </div>
                 </div>
                 <div class="buttonArea">
