@@ -31,14 +31,16 @@ body{
 
 .content .title{
     margin-bottom: 1.2vw;
-    font-size: 4.78vw;
+    font-size: 7.78vw;
     font-weight: 700;
     color: #FFA928;
 
 }
 .content .decs{
     color:#4D4D4D;
+    background-color: #FFA928;
     font-weight: 500;
+    
 }
 
 
@@ -178,7 +180,8 @@ body{
 .slideDecs {
     margin-bottom: 9.09vw;
     margin-top: 12.09vw;
-    font-size: 3.35vw;
+    font-size: 4.35vw;
+    line-height: 8vw;
     color:#4D4D4D;
     text-align: center;
 }
@@ -186,8 +189,8 @@ body{
 .slideDecs img{
     /*display: block;*/
     margin: 0 auto;
-    width: 3.59vw;
-    height: 3.35vw;
+    width: 5.59vw;
+    height: 5.35vw;
 }
 
 .buttonArea {
@@ -538,6 +541,13 @@ span.ui-slider-handle.ui-corner-all.ui-state-default{
     align-items: center;
     margin-bottom: 1.67vw;
 }
+
+.marketInfo .contList li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.67vw;
+}
+
 .marketInfo .infoList li::before {
     display: inline-block;
     width: 4.78vw;
@@ -590,7 +600,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default{
 }
 
 .marketInfo .infoList li.playPrice::before{
-    background-image: url("../images/icon/icPrice.svg");
+    background-image: url("../images/icon/icPrice_1.svg");
 }
 
 .marketInfo .copyArea {

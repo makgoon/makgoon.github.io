@@ -14,49 +14,102 @@
     <script src="js/lib/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="js/script.js"></script>
     <script src="json/watch.json" type="text/javascript"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b5469639799cba893ccb87b6e3dd9103"></script>
     <script>
         let testData = JSON.parse(JSON.stringify(WatchData));
-        var maxNM = 3;
+        var maxNM = 29;
         var minNM = 1;
         var mainNM = '';
         var subNM = '';
-        var content = '';
+        var watchVersion, watchName, watSubName, watchSubName2, watchLink, watchLoc, watchEtc, watchContent, watchContent2, Latitude, longitude, picNM = '';
         const randomNM = Math.floor(Math.random()*maxNM + minNM);
 
         function setVar(){
-            content = testData[0][randomNM]['content']
-            mainNM = testData[0][randomNM]['watchName'] 
-            subNM = testData[0][randomNM]['watSubName'] 
+            watchVersion = testData[0][randomNM]['watchVersion']
+            watchName = testData[0][randomNM]['watchName']
+            watSubName = testData[0][randomNM]['watSubName']
+            watchSubName2 = testData[0][randomNM]['watchSubName2']
+            watchLink = testData[0][randomNM]['watchLink']
+            watchLoc = testData[0][randomNM]['watchLoc']
+            watchEtc = testData[0][randomNM]['watchEtc']
+            watchContent = testData[0][randomNM]['watchContent']
+            watchContent2 = testData[0][randomNM]['watchContent2']
+            Latitude = testData[0][randomNM]['Latitude']
+            longitude = testData[0][randomNM]['longitude']
             picNM = testData[0][randomNM]['picNM']
+
         }
-        function setContent() {
-            const elementCont = document.getElementById('contentID');
-            elementCont.innerHTML = '<li>' + content +'</li>'
+
+        function setElements(){
+            const elementwatchName = document.getElementById('mainNM');
+            //const elementwatchSubName2 = document.getElementById('mainNM');
+            //const elementwatchLink = 
+            //const elementwatchLoc = 
+            //const elementwatchEtc = 
+            const elementwatchContent = document.getElementById('contentID');
+                        
+            elementwatchName.innerHTML = '<p class="name">' + watchName +'</p>';
+
+            if(watchVersion === '1'){
+                elementwatchContent.innerHTML = '<div class="marketInfo"> <p class="lable">'+watSubName+'</p> <ul class="contList"> <li> '+ watchContent
+                    + '</li> </ul> </div> <br><hr style = "border-bottom:0px; color: #6b6b6b; "><br> <div class="marketInfo"> <p class="lable">' + watchSubName2 + '</p> <ul class="contList"> <li> ' + watchContent2
+                    + '</li> </ul> </div> <img src="images/img/watch/'+randomNM +'/2.jpg" alt="상세" style="width: 90vw; height: 130vw;">'
+            } else{
+                elementwatchContent.innerHTML = '<div class="marketInfo"> <p class="lable">'+watSubName+'</p> <ul class="contList"> <li> '+ watchContent
+                    + '</li> </ul> </div>'
+            }
         }
-        function setMainNM() {
-            const elementMain = document.getElementById('mainNM');
-            elementMain.innerHTML = '<p class="name">' + mainNM +'</p>'
-        }
-        function setSubNM() {
-            const elementSub = document.getElementById('subNM');
-            elementSub.innerHTML = '<p class="lable">' + subNM +'</p>'
-        }
+
         function setPic(){
             const elementPic = document.getElementById('getPic');
             var picSourceTag = ''
             for(var i = 1; i < picNM+1; i++){
-                picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.png" alt="상세"></div>'
+                if(watchVersion === '1'){
+                    picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.jpg" alt="상세"></div>'
+                }else{
+                    picSourceTag = picSourceTag + '<div class="img"><img src="images/img/watch/'+randomNM +'/'+ i +'.png" alt="상세"></div>'
+                }
+                
             }
             elementPic.innerHTML = picSourceTag;
-            console.log(picSourceTag);
         }
 
         document.addEventListener("DOMContentLoaded", function(){
             setVar();
-            setContent();
-            setMainNM();
-            setSubNM();
+            setElements()
             setPic();
+
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(Latitude, longitude), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            // 마커가 표시될 위치입니다 
+            var markerPosition  = new kakao.maps.LatLng(Latitude, longitude); 
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+
+            var iwContent = '<div style="padding:5px;">'+ watchName +'<br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                iwPosition = new kakao.maps.LatLng(Latitude, longitude); //인포윈도우 표시 위치입니다
+
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                position : iwPosition, 
+                content : iwContent 
+            });
+            
+            // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+            infowindow.open(map, marker); 
 
         });
     </script>
@@ -81,22 +134,23 @@
                                 <!--<p class="name" id="mainNM">제목</p> -->
                             </div>
                         </div>   
-                        <div class="shareIncon">
-                            <img src="images/icon/icShare.svg" alt="share" style="display: none">
+                    </div>
+                    <div id="contentID">
+                        <div class="marketInfo">
+                            <p class="lable">소제목</p>
+                            <ul class="infoList">
+                                <li id = 'contentID'>
+                                    내용
+     
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="marketInfo">
-                       <p class="lable" id = "subNM">소제목</p>
-                        <ul class="infoList">
-                            <li id = 'contentID'>
-                                내용
-
-                            </li>
-                        </ul>
-                    </div>
+                    
                     <div class="marketInfo map">
+                        <br>
                         <p class="lable">위치 안내</p>
-                        <img src="images/img/imgMap.svg" alt="map" class="mapImg">
+                        <div class="box" id="map"  style="width:360px;height:400px;"></div>
                     </div>
                 </div>
                 <div class="buttonArea">
