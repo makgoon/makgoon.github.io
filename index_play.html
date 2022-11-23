@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="js/lib/slick/slick-theme.css">
+    <link rel="stylesheet" href="js/lib/slick/slick.css">
+    <link rel="stylesheet" href="js/lib/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/lib/jquery-3.6.1.min.js"></script>
+    <script src="js/lib/slick/slick.min.js"></script>
+    <script src="js/lib/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b5469639799cba893ccb87b6e3dd9103"></script>
+    
+    <title>상세페이지</title>
+
+</head>
+
+<script>
+
+
+    
+
+
+    document.addEventListener("DOMContentLoaded", function(){
+        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        var options = { //지도를 생성할 때 필요한 기본 옵션
+        center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+        level: 3 //지도의 레벨(확대, 축소 정도)
+        };
+	    var map = new kakao.maps.Map(container, options);
+        var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+            });
+        marker.setMap(map);
+    });
+
+
+
+</script>
+
+
+<body>
+    <div id="wrap" class="wrap">
+        <!-- container -->
+        <div id="container" class="container ">
+            <!-- //content -->
+            <div id="content" class="content detailContent">
+                <div class="imgSlide">
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                    <div class="img">
+                        <img src="images/img/detailImg.png" alt="상세">
+                    </div>
+                </div>
+                <div class="contentArea">
+                    <div class="nameArea">
+                        <div>
+                            <div class="nameInfo">
+                                <p class="name">미림극장</p>
+                                <!--<p class="detailName">문화/체험</p>-->
+                            </div>
+                            <p class="detailCategory">고전영화</p>
+                        </div>   
+                        <div class="shareIncon">
+                            <img src="images/icon/icShare.svg" alt="share">
+                        </div>
+                    </div>
+                    <div class="marketInfo">
+                        <p class="lable">세부정보</p>
+                        <ul class="infoList">
+                            <li class="address">인천 동구 송현동 92-7</li>
+                            <li class="time"><span class="hour">09:30 - 21:00</span>  휴무일 : 전화 문의(유동적)<span class="close"> 영업종료</span></li>
+                            <li class="homepage">
+                                http://www.milimcine.com/
+                            </li>
+                            <li class="phone">
+                                <span>0507-1493-8883</span>
+                                <div class="copyArea">
+                                    <img src="images/icon/icCopy.svg" alt="copy"><span class="copyText">복사</span>
+                                </div>
+                            </li>
+                            <li class="playPrice">65세 이상 2500원<br>
+                            65세 미만 5000원</li>
+                        </ul>
+                    </div>
+                    <!--
+                    <div class="marketInfo marketInfo_v3">
+                        <p class="lable">매장사진</p>
+                        <ul>
+                            <li class="photo">
+                                <div>
+                                    <img src="images/img/market_01.png" alt="">
+                                    <p class="hash">매뉴판</p>
+                                </div>
+                            </li>
+                            <li class="photo">
+                                <div>
+                                    <img src="images/img/market_02.png" alt="">
+                                    <p class="hash">추천매뉴</p>
+                                </div>
+                            </li>
+                            <li class="photo">
+                                <div>
+                                    <img src="images/img/market_03_1.png" alt="">
+                                    <p class="hash">가게외부</p>
+                                </div>
+                            </li>
+                            <li class="photo">
+                                <div>
+                                    <img src="images/img/market_04.png" alt="">
+                                    <p class="hash">가게내부</p>
+                                </div>
+                            </li>
+                        </ul>
+                     
+                    </div>
+                    -->
+                    <div class="marketInfo map">
+                        <p class="lable">위치 안내</p>
+                        <div class="box" id="map"  style="width:360px;height:400px;"></div>
+                        <!--<img src="images/img/imgMap.svg" alt="map" class="mapImg">-->
+                    </div>
+                </div>
+                <div class="buttonArea">
+                    
+                    <a href="index.html"><button class="btnHome">홈</button></a>
+                </div>
+            </div>
+            <!-- //content -->
+        </div> 
+        <!-- //container -->
+    </div>
+</body>
+</html>

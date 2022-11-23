@@ -582,6 +582,17 @@ span.ui-slider-handle.ui-corner-all.ui-state-default{
     background-image: url("../images/icon/icPhone.svg");
 }
 
+.marketInfo  .playPrice {
+    display: flex;
+    align-items: center;
+    font-family: "Lato";
+
+}
+
+.marketInfo .infoList li.playPrice::before{
+    background-image: url("../images/icon/icPrice.svg");
+}
+
 .marketInfo .copyArea {
     cursor: pointer;
     margin-left: 1.79vw;
