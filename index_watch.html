@@ -24,7 +24,8 @@
         var subNM = '';
         var watchVersion, watchName, watSubName, watchSubName2, watchLink, watchLoc, watchEtc, watchContent, watchContent2, Latitude, longitude, picNM = '';
         const randomNM = Math.floor(Math.random()*maxNM + minNM);
-
+        var wido = ''
+        var gyungdo = ''
         function setVar(){
             watchVersion = testData[0][randomNM]['watchVersion']
             watchName = testData[0][randomNM]['watchName']
@@ -75,6 +76,45 @@
             elementPic.innerHTML = picSourceTag;
         }
 
+
+    
+    function routeFinder(){
+        console.log(gyungdo);
+        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+watchName+','+Latitude+','+longitude
+        console.log(geoUrl);
+        location.href=geoUrl;
+    }
+/*
+    function getLocation() {
+        
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                wido = position.coords.latitude
+                gyungdo = position.coords.longitude
+                //alert(position.coords.latitude + ' ' + position.coords.longitude);
+                //inputGPS();
+                console.log(wido)
+                
+            }, function(error) {
+                alert("GPS 기능이 정상작동하지 않습니다./n 추후에 다시 시도해주세요.");
+                alert(error);
+            }, {
+                enableHighAccuracy: false,
+                maximumAge: 1000,
+                timeout: Infinity
+            });
+            } else {
+            alert('GPS를 지원하지 않습니다');
+            }
+
+        
+    }
+    */
+    function dododo(){
+       //getLocation();
+        routeFinder();
+    }
+
         document.addEventListener("DOMContentLoaded", function(){
             setVar();
             setElements()
@@ -99,7 +139,7 @@
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
 
-            var iwContent = '<div style="padding:5px;">'+ watchName +'<br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            var iwContent = '<div style="padding:5px;">'+ watchName +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                 iwPosition = new kakao.maps.LatLng(Latitude, longitude); //인포윈도우 표시 위치입니다
 
             // 인포윈도우를 생성합니다
@@ -150,14 +190,14 @@
                     <div class="marketInfo map">
                         <br>
                         <p class="lable">위치 안내</p>
-                        <div class="box" id="map"  style="width:360px;height:400px;"></div>
+                        <div class="box" id="map"  style="width:90vw;height:40vw;"></div>
                     </div>
                 </div>
                 <div class="buttonArea">
                     
                     <a href="index.html"><button class="btnHome">홈</button></a>
                     <a href="index_2.html" style="display: none"><button class="btnRetry" style="display: none">다시찾기</button></a>
-                    <button class="btnActive" style="display: none">길찾기</button>
+                    <button class="btnActive" onclick="dododo()">길찾기</button>
                 </div>
             </div>
             <!-- //content -->
