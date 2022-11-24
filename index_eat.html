@@ -38,6 +38,15 @@
 
         }
 
+        function setPic(){
+            const elementPic = document.getElementById('getPic');
+            var picSourceTag = ''
+            for(var i = 1; i < picNM+1; i++){
+                picSourceTag = picSourceTag + '<div class="img"><img src="images/img/eat/'+randomNM +'/'+ i +'.jpg" alt="상세"></div>'
+            }
+            elementPic.innerHTML = picSourceTag;
+    }
+
         function setElements(){
             const elementNamePlace = document.getElementById('nameplace');
             const elementeatLink = document.getElementById('URLInfo');
@@ -124,6 +133,7 @@
         document.addEventListener("DOMContentLoaded", function(){
             setVar();
             setElements()
+            setPic()
             //setPic();
 
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -166,7 +176,8 @@
         <div id="container" class="container ">
             <!-- //content -->
             <div id="content" class="content detailContent">
-                <div class="imgSlide">
+                <div class="imgSlide" id="getPic">
+                    <!--
                     <div class="img">
                         <img src="images/img/detailImg.png" alt="상세">
                     </div>
@@ -176,6 +187,7 @@
                     <div class="img">
                         <img src="images/img/detailImg.png" alt="상세">
                     </div>
+                    -->
                 </div>
                 <div class="contentArea">
                     <div class="nameArea">
