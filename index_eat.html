@@ -29,10 +29,12 @@
             Categorynm = testData[0][randomNM]['Categorynm']
             place_url = testData[0][randomNM]['place_url']
             road_address = testData[0][randomNM]['road_address']
+            eatTime = testData[0][randomNM]['eattime']
             phone = testData[0][randomNM]['phone']
             Latitude = testData[0][randomNM]['Y']
             longitude = testData[0][randomNM]['X']
-            //picNM = testData[0][randomNM]['picNM']
+            eatPrice = testData[0][randomNM]['menu']
+            picNM = 5
 
         }
 
@@ -42,17 +44,34 @@
             const elementeatLoc = document.getElementById('eatAddr');
             const elementeatPhone = document.getElementById('eatPhone');
             const elementdetailInfo = document.getElementById('detailinfo');
-                        
+            const elementeatTime = document.getElementById('eattime');
+            const elementeatMenu = document.getElementById('eatmenu');
+
             elementNamePlace.innerHTML = '<p class="name">' + stores +'</p>  <p class="detailName">'+CategoryGroup+'</p>';
             elementdetailInfo.innerHTML = '<p>'+Categorynm+'</p>'
             elementeatLink.innerHTML = '<li class="homepage">'+ place_url+'</li>'
             elementeatLoc.innerHTML = '<li class="address">'+road_address+'</li>'
             elementeatPhone.innerHTML = '<span>'+phone+'</span>'
+            elementeatTime.innerHTML = '<li class="time"><span class="hour">'+eatTime+'</span></li>'
+            var strmenu = ''
+            
+            for (var i=0; i < eatPrice.length; i++){
+                console.log(eatPrice[i])
+                var eatItemMenu = eatPrice[i][0];
+                var eatItemPrice = eatPrice[i][1];
+                
+                strmenu += '<div class="menuList"> <p  class="menu">'
+                                        + eatItemMenu
+                                        +'</p><p class="border"></p><p class="price">'
+                                        + eatItemPrice
+                                        + '</p></div>'
+            }
 
+            elementeatMenu.innerHTML = strmenu
         }
 
         function routeFinder(){
-        console.log(gyungdo);
+
         var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+stores+','+Latitude+','+longitude
         console.log(geoUrl);
         location.href=geoUrl;
@@ -179,8 +198,10 @@
                             <div id="eatAddr">
                                 <li class="address">서울특별시 송파구 송파대로 133(송파동) 1층</li>
                             </div>
+                            <div id="eattime">
+                                <li class="time"><span class="hour">10:00 ~ 22:00</span></li>
+                            </div>
                             
-                            <li class="time"><span class="hour">10:00 ~ 22:00</span>매주 일요일 휴무<span class="close"> 영업종료</span></li>
                             <div id="URLInfo">
                                 <li class="homepage">otaru-poseidon.com</li>
                             </div>
@@ -192,9 +213,8 @@
                     </div>
                     <div class="marketInfo marketInfo_v2">
                         <p class="lable">메뉴정보</p>
-                        <div>
+                        <div id="eatmenu">
                             <div class="menuList "> 
-                                <a href="#">DD</a>
                                 <p  class="menu">짜장면<span class="menuReco">추천</span></p>
                                 <p class="border"></p>
                                 <p class="price">6,000원</p>
