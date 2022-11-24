@@ -82,7 +82,42 @@ let testData = JSON.parse(JSON.stringify(PlayData));
             }
             elementPic.innerHTML = picSourceTag;
     }
+    function routeFinder(){
+        console.log(gyungdo);
+        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+watchName+','+Latitude+','+longitude
+        console.log(geoUrl);
+        location.href=geoUrl;
+    }
+/*
+    function getLocation() {
+        
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                wido = position.coords.latitude
+                gyungdo = position.coords.longitude
+                //alert(position.coords.latitude + ' ' + position.coords.longitude);
+                //inputGPS();
+                console.log(wido)
+                
+            }, function(error) {
+                alert("GPS 기능이 정상작동하지 않습니다./n 추후에 다시 시도해주세요.");
+                alert(error);
+            }, {
+                enableHighAccuracy: false,
+                maximumAge: 1000,
+                timeout: Infinity
+            });
+            } else {
+            alert('GPS를 지원하지 않습니다');
+            }
 
+        
+    }
+    */
+    function dododo(){
+       //getLocation();
+        routeFinder();
+    }
 
 document.addEventListener("DOMContentLoaded", function(){
     setVar()
@@ -207,13 +242,14 @@ infowindow.open(map, marker);
                     -->
                     <div class="marketInfo map">
                         <p class="lable">위치 안내</p>
-                        <div class="box" id="map"  style="width:360px;height:400px;"></div>
+                        <div class="box" id="map"  style="width:90vw;height:40vw;"></div>
                         <!--<img src="images/img/imgMap.svg" alt="map" class="mapImg">-->
                     </div>
                 </div>
                 <div class="buttonArea">
                     
                     <a href="index.html"><button class="btnHome">홈</button></a>
+                    <button class="btnActive" onclick="dododo()">길찾기</button>
                 </div>
             </div>
             <!-- //content -->
