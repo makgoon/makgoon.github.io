@@ -84,7 +84,7 @@ let testData = JSON.parse(JSON.stringify(PlayData));
     }
     function routeFinder(){
         console.log(gyungdo);
-        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+watchName+','+Latitude+','+longitude
+        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+playName+','+playLati+','+playLong
         console.log(geoUrl);
         location.href=geoUrl;
     }

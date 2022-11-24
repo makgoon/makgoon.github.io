@@ -53,7 +53,7 @@
 
         function routeFinder(){
         console.log(gyungdo);
-        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+watchName+','+Latitude+','+longitude
+        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+stores+','+Latitude+','+longitude
         console.log(geoUrl);
         location.href=geoUrl;
     }
@@ -126,7 +126,7 @@
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
 
-            var iwContent = '<div style="padding:5px;">'+ stores +'<br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            var iwContent = '<div style="padding:5px;">'+ stores +'<br></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                 iwPosition = new kakao.maps.LatLng(Latitude, longitude); //인포윈도우 표시 위치입니다
 
             // 인포윈도우를 생성합니다
@@ -230,7 +230,7 @@
                 <div class="buttonArea">
                     
                     <a href="index.html"><button class="btnHome">홈</button></a>
-                    <a href="index_2.html"><button class="btnRetry">다시찾기</button></a>
+                    <a href="index_2.html"><button class="btnRetry" style="display: none">다시찾기</button></a>
                     <button class="btnActive" onclick="dododo()">길찾기</button>
                 </div>
             </div>
