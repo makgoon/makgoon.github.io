@@ -186,6 +186,15 @@ body{
     text-align: center;
 }
 
+.slideDecsMaker {
+    margin-bottom: 9.09vw;
+    margin-top: 8.09vw;
+    font-size: 3.35vw;
+    line-height: 5vw;
+    color:#4D4D4D;
+    text-align: center;
+}
+
 .slideDecs img{
     /*display: block;*/
     margin: 0 auto;
