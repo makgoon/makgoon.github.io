@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="js/lib/slick/slick-theme.css">
+    <link rel="stylesheet" href="js/lib/slick/slick.css">
+    <link rel="stylesheet" href="js/lib/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/lib/jquery-3.6.1.min.js"></script>
+    <script src="js/lib/slick/slick.min.js"></script>
+    <script src="js/lib/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b5469639799cba893ccb87b6e3dd9103"></script>
+    <script src="json/play.json" type="text/javascript"></script>
+    <title>상세페이지</title>
+
+</head>
+
+<script>
+//데이터부분
+let testData = JSON.parse(JSON.stringify(PlayData));
+    var maxNM = 51;
+    var minNM = 1;
+    var playName = '';
+    var playSubName = '';
+    var playPrice = '';
+    var playCategory = '';
+    var playHoliday = '';
+    var playTime = '';
+    var playLink = '';
+    var playLoc = '';
+    var playPhone = '';
+    var playLati = '';
+    var playLong = '';
+    var picNM = '';
+    const randomNM = Math.floor(Math.random()*maxNM + minNM);
+
+
+    function setVar(){
+            playName = testData[0][randomNM]['PlayName']
+            playSubName = testData[0][randomNM]['PlaySubName'] 
+            playPrice = testData[0][randomNM]['Price'] 
+            playCategory = testData[0][randomNM]['playCategory']
+            playHoliday = testData[0][randomNM]['PlayHoliday']
+            playTime = testData[0][randomNM]['PlayTime']
+            playLink = testData[0][randomNM]['PlayLink']
+            playLoc = testData[0][randomNM]['PlayLoc']
+            playPhone = testData[0][randomNM]['PlayPhone']
+            playLati = testData[0][randomNM]['Latitude']
+            playLong = testData[0][randomNM]['longitude']
+            picNM = testData[0][randomNM]['picNM']
+            
+    }
+
+    function setElements(){
+        const elementPlayName = document.getElementById('playName');
+        const elementPlaySubName = document.getElementById('playSubName');
+        const elementPlayPrice = document.getElementById('playPriceId');
+        const elementPlayTime = document.getElementById('playTime');
+        const elementPlayLink = document.getElementById('playLink');
+        const elementPlayLoc = document.getElementById('playLoc');
+        const elementPlayPhone = document.getElementById('playPhone');
+
+        elementPlayName.innerHTML = '<p class="name">' + playName +'</p>' + '<p class="detailName">'+playCategory+'</p>';
+        elementPlaySubName.innerHTML = '<p class="detailCategory">'+ playSubName +'</p>';
+        elementPlayPrice.innerHTML = '<li class="playPrice">'+ playPrice +'</li>';
+        elementPlayTime.innerHTML = '<li class="time"><span class="hour">' +playTime+ '</span> 휴무일 : '+playHoliday+'</li>'
+        elementPlayLink.innerHTML = '<li class="homepage">'+playLink +'</li>';
+        elementPlayLoc.innerHTML = '<li class="address">'+playLoc+'</li>'
+        elementPlayPhone.innerHTML = '<span>'+ playPhone+'</span>'
+    }
+
+    function setPic(){
+            const elementPic = document.getElementById('getPic');
+            var picSourceTag = ''
+            for(var i = 1; i < picNM+1; i++){
+                picSourceTag = picSourceTag + '<div class="img"><img src="images/img/play/'+randomNM +'/'+ i +'.jpg" alt="상세"></div>'
+            }
+            elementPic.innerHTML = picSourceTag;
+    }
+    function routeFinder(){
+
+        var geoUrl = 'https://map.kakao.com/link/from/내위치,37.47446,126.63433/to/'+playName+','+playLati+','+playLong
+        console.log(geoUrl);
+        location.href=geoUrl;
+    }
+/*
+    function getLocation() {
+        
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                wido = position.coords.latitude
+                gyungdo = position.coords.longitude
+                //alert(position.coords.latitude + ' ' + position.coords.longitude);
+                //inputGPS();
+                console.log(wido)
+                
+            }, function(error) {
+                alert("GPS 기능이 정상작동하지 않습니다./n 추후에 다시 시도해주세요.");
+                alert(error);
+            }, {
+                enableHighAccuracy: false,
+                maximumAge: 1000,
+                timeout: Infinity
+            });
+            } else {
+            alert('GPS를 지원하지 않습니다');
+            }
+
+        
+    }
+    */
+    function dododo(){
+       //getLocation();
+        routeFinder();
+    }
+
+document.addEventListener("DOMContentLoaded", function(){
+    setVar()
+    setElements()
+    setPic()
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(playLati, playLong), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption);
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(playLati, playLong); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+var iwContent = '<div style="padding:5px;">'+ playName +'<br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = new kakao.maps.LatLng(playLati, playLong); //인포윈도우 표시 위치입니다
+
+// 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({
+    position : iwPosition, 
+    content : iwContent 
+});
+  
+// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+infowindow.open(map, marker); 
+});
+
+</script>
+
+
+<body>
+    <div id="wrap" class="wrap">
+        <!-- container -->
+        <div id="container" class="container ">
+            <!-- //content -->
+            <div id="content" class="content detailContent">
+                <div class="imgSlide" id="getPic">
+
+                </div>
+            </div>
+            <!-- //content -->
+        </div> 
+        <!-- //container -->
+    </div>
+</body>
+</html>
